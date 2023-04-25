@@ -1,8 +1,9 @@
+use wasm_bindgen::prelude::*;
 use std::env::consts::{ARCH, OS};
 
-#[no_mangle]
-pub fn main() -> &'static str {
-    match (OS, ARCH) {
+#[wasm_bindgen]
+pub fn main() {
+     match (OS, ARCH) {
         ("windows", "x86_64") => "win-x64-msi",
         ("windows", "i686") => "win-x86-msi",
         ("windows", "i586") => "win-x86-msi",
@@ -22,5 +23,5 @@ pub fn main() -> &'static str {
         ("sunos", "x86_64") => "sunos-x64",
         ("sunos", "i686") => "sunos-x86",
         _ => panic!("Unsupported platform or architecture"),
-    }
+    };
 }
