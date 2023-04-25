@@ -1,0 +1,28 @@
+[package]
+name = "get-architecture"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+wasm-bindgen = "0.2.71"
+
+[lib]
+path = "src/main.rs"
+crate-type = ["cdylib"]
+
+[profile.release]
+# Use `wee_alloc` as the global allocator
+# to minimize WebAssembly binary size
+# (requires `wee_alloc` crate to be added as a dependency)
+opt-level = "s"
+lto = true
+panic = "abort"
+codegen-units = 1
+incremental = false
+overflow-checks = true
+
+[dependencies.wee_alloc]
+version = "0.4.5"
+default-features = false
